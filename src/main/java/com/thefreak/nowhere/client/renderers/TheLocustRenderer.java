@@ -1,20 +1,15 @@
 package com.thefreak.nowhere.client.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.thefreak.nowhere.Nowhere;
 import com.thefreak.nowhere.client.models.TheLocustModel;
 import com.thefreak.nowhere.common.entities.TheLocust;
 import com.thefreak.nowhere.common.initiation.NowhereRenderTypes;
-import foundry.veil.api.client.render.VeilRenderSystem;
-import foundry.veil.api.client.render.shader.program.ShaderProgram;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer;
 
 public class TheLocustRenderer extends GeoEntityRenderer<TheLocust> {
     public TheLocustRenderer(EntityRendererProvider.Context renderManager) {
@@ -35,8 +30,4 @@ public class TheLocustRenderer extends GeoEntityRenderer<TheLocust> {
                 1, 1, 1, 1);
 
     }
-
-
-
-
 }
