@@ -1,8 +1,8 @@
 {
   "parent": "nowhere:item/handheld",
-  "loader": "forge:separate-perspective",
+  "loader": "forge:separate_transforms",
   "textures": {
-    "layer0": "nowhere:items/cassette_inv"
+    "layer0": "nowhere:item/cassette_inv"
   },
   "base": {
     "parent": "nowhere:item/cassette_inhand"

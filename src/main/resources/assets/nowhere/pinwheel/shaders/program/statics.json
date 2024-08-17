@@ -1,3 +1,4 @@
 {
-  "fragment": "nowhere:static_shader"
+  "fragment": "nowhere:static_shader",
+  "vertex": "minecraft:rendertype_entity_cutout_no_cull"
 }

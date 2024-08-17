@@ -3,13 +3,13 @@ package com.thefreak.nowhere.common.advanced;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 
-public class DoorWays {
+public class DoorWay {
     private final BlockPos position;
 
     private final Direction direction;
     private boolean blocked;
 
-    public DoorWays(BlockPos position, Direction direction) {
+    public DoorWay(BlockPos position, Direction direction) {
         this.position = position;
         this.direction = direction;
     }

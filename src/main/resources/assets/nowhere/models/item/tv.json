@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "nowhere:item/cassette_inv"
+    "layer0": "nowhere:item/tv"
   }
 }
