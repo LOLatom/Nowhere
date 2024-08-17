@@ -7,14 +7,12 @@ import com.thefreak.nowhere.client.models.TVScreenModel;
 import com.thefreak.nowhere.common.blockentity.TVBlockEntity;
 import com.thefreak.nowhere.common.blocks.TVBlock;
 import com.thefreak.nowhere.common.initiation.LayerInitiation;
-import com.thefreak.nowhere.common.initiation.LayerRegistry;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class TVRenderer implements BlockEntityRenderer<TVBlockEntity> {

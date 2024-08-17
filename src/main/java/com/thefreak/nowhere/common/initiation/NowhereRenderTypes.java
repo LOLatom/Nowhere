@@ -17,7 +17,7 @@ public class NowhereRenderTypes extends RenderType {
     private static final RenderStateShard.ShaderStateShard STATIC_SHADER = VeilRenderBridge.shaderState(Nowhere.path("statics"));
     private static final BiFunction<ResourceLocation, Boolean, RenderType> STATIC_NO_CULL = Util.memoize((location, aBoolean) -> {
         RenderType.CompositeState rendertype$compositestate = RenderType.CompositeState.builder().setShaderState(STATIC_SHADER)
-                .setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
+                .setTextureState(NO_TEXTURE)
                 .setTransparencyState(NO_TRANSPARENCY).setCullState(NO_CULL).setLightmapState(LIGHTMAP)
                 .setOverlayState(OVERLAY).createCompositeState(aBoolean);
         RenderType renderType = create("static_no_cull",
