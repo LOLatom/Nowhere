@@ -2,6 +2,7 @@ package com.thefreak.nowhere.common.initiation;
 
 import com.thefreak.nowhere.Nowhere;
 import com.thefreak.nowhere.client.models.TVScreenModel;
+import com.thefreak.nowhere.client.models.TheLocustTorsoModel;
 import com.thefreak.nowhere.client.renderers.TVRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,6 +16,7 @@ public class LayerRegistry {
     @SubscribeEvent
     public static void registerLayerDef(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(LayerInitiation.TV_LAYER, TVScreenModel::createBodyLayer);
+        event.registerLayerDefinition(LayerInitiation.LOCUST_TORSO_LAYER, TheLocustTorsoModel::createBodyLayer);
     }
 
     @SubscribeEvent

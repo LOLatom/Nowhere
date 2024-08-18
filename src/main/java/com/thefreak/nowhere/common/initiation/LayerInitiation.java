@@ -7,6 +7,9 @@ import net.minecraft.resources.ResourceLocation;
 public class LayerInitiation {
     public static final ModelLayerLocation TV_LAYER = register("tv");
 
+    public static final ModelLayerLocation LOCUST_TORSO_LAYER = register("locust_torso");
+
+
 
 
     private static ModelLayerLocation register(String loc) {

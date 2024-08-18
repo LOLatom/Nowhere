@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.Objects;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 
@@ -21,7 +22,7 @@ public class NowhereRenderTypes extends RenderType {
     private static final Function<ResourceLocation, RenderType> STATIC_CULL = Util.memoize((location) -> {
         RenderType.CompositeState rendertype$compositestate = RenderType.CompositeState.builder().setShaderState(STATIC_SHADER)
                 .setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
-                .setTransparencyState(NO_TRANSPARENCY).setCullState(CULL).setLightmapState(LIGHTMAP)
+                .setTransparencyState(NO_TRANSPARENCY).setCullState(NO_CULL).setLightmapState(LIGHTMAP)
                 .setOverlayState(OVERLAY).createCompositeState(true);
         RenderType renderType = create("static_cull",
                 DefaultVertexFormat.NEW_ENTITY,

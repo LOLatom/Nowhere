@@ -13,6 +13,7 @@ import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
@@ -41,6 +42,13 @@ public class TheLocust extends Mob implements GeoEntity {
     }
 
     private PlayState MovementController(AnimationState<TheLocust> theLocustAnimationState) {
+        if (theLocustAnimationState.isMoving()) {
+
+        } else {
+            theLocustAnimationState.getController()
+                    .setAnimation(RawAnimation.begin().thenLoop("animation.the_locust.idle"));
+            return PlayState.CONTINUE;
+        }
 
         return PlayState.STOP;
     }

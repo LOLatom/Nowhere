@@ -16,11 +16,14 @@ public class ChatEvents {
         if (enableTestCommands) {
             String message = event.getMessage();
             if (message.startsWith("!setPercentage")) {
+                //System.out.println("Working");
                 String[] args = message.split(" ");
                 if (args.length == 2) {
+                    //System.out.println("Working 2");
                     try {
                         float percentage = Float.parseFloat(args[1]);
                         if (percentage >= 0 && percentage <= 1) {
+                            //System.out.println("Working 3");
                             NowhereRenderTypes.setStaticPercentage(percentage);
                             event.setCanceled(true);
                         }

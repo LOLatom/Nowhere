@@ -7,6 +7,7 @@ import com.thefreak.nowhere.common.entities.TheLocust;
 import com.thefreak.nowhere.common.initiation.NowhereRenderTypes;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
