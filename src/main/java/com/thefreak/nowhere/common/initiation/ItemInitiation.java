@@ -15,4 +15,6 @@ public class ItemInitiation {
 
     public static final RegistryObject<BlockItem> TV = ITEMS.register("tv", () -> new BlockItem(BlockInitiation.TV_BLOCK.get(),new Item.Properties().stacksTo(1)));
 
+    public static final RegistryObject<BlockItem> STRANGE_WALL = ITEMS.register("strange_wall", () -> new BlockItem(BlockInitiation.STRANGE_WALL.get(),new Item.Properties()));
+
 }

@@ -2,7 +2,7 @@ package com.thefreak.nowhere.common.initiation;
 
 import com.thefreak.nowhere.Nowhere;
 import com.thefreak.nowhere.client.models.TVScreenModel;
-import com.thefreak.nowhere.client.models.TheLocustTorsoModel;
+import com.thefreak.nowhere.client.renderers.GeoTVRenderer;
 import com.thefreak.nowhere.client.renderers.TVRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
@@ -16,12 +16,17 @@ public class LayerRegistry {
     @SubscribeEvent
     public static void registerLayerDef(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(LayerInitiation.TV_LAYER, TVScreenModel::createBodyLayer);
-        event.registerLayerDefinition(LayerInitiation.LOCUST_TORSO_LAYER, TheLocustTorsoModel::createBodyLayer);
+        //event.registerLayerDefinition(LayerInitiation.LOCUST_TORSO_LAYER, TheLocustTorsoModel::createBodyLayer);
     }
 
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {
-        BlockEntityRenderers.register(BlockEntityInitiation.TV_BE.get(), TVRenderer::new);
+        //BlockEntityRenderers.register(BlockEntityInitiation.TV_BE.get(), GeoTVRenderer::new);
+    }
+
+    @SubscribeEvent
+    public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(BlockEntityInitiation.TV_BE.get(), GeoTVRenderer::new);
     }
 
 }

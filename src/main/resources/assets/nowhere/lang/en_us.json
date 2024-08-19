@@ -1,3 +1,5 @@
 {
-  "item.nowhere.cassette": "Cassette"
+  "item.nowhere.cassette": "Cassette",
+  "block.nowhere.tv": "TV",
+  "block.nowhere.strange_wall": "Strange Wall"
 }

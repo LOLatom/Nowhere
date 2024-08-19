@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "c_up=false,c_down=true":  { "model": "nowhere:block/strange_wall_top" },
+    "c_up=true,c_down=false":  { "model": "nowhere:block/strange_wall_bottom" },
+    "c_up=false,c_down=false":  { "model": "nowhere:block/strange_wall_none" },
+    "c_up=true,c_down=true":  { "model": "nowhere:block/strange_wall_middle" }
+  }
+}

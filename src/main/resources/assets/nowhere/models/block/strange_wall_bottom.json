@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "nowhere:block/strange_wall_full_bottom",
+    "side": "nowhere:block/strange_wall_bottom"
+  }
+}

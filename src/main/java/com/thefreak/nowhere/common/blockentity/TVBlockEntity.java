@@ -19,15 +19,30 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Unique;
+import software.bernie.geckolib.animatable.GeoBlockEntity;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class TVBlockEntity extends BlockEntity implements Tooltippable {
+public class TVBlockEntity extends BlockEntity implements Tooltippable, GeoBlockEntity {
+    protected static final RawAnimation ON = RawAnimation.begin().thenLoop("animation.tv.on");
+    protected static final RawAnimation OFF = RawAnimation.begin().thenLoop("animation.tv.off");
+
 
     private boolean isOn = false;
     private int cassetteID = 0;
+
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+
 
     private Component onOrOffComp = Component.nullToEmpty("On").copy().withStyle(Style.EMPTY.withColor(new java.awt.Color(4, 255, 17,255).getRGB()));
 
@@ -44,6 +59,7 @@ public class TVBlockEntity extends BlockEntity implements Tooltippable {
 
     @Override
     public void load(CompoundTag pTag) {
+        super.load(pTag);
         this.isOn = pTag.contains("isOn") ? pTag.getBoolean("isOn") : false;
         if (pTag.contains("isOn")) {
             System.out.println(pTag.getBoolean("isOn"));
@@ -60,7 +76,7 @@ public class TVBlockEntity extends BlockEntity implements Tooltippable {
         List<Component> components = new ArrayList<>();
         components.add(turnOncmp);
         setTooltip(components);
-        super.load(pTag);
+        initTheme();
     }
 
     public boolean isOn() {
@@ -296,6 +312,30 @@ public class TVBlockEntity extends BlockEntity implements Tooltippable {
     @Override
     public List<VeilUIItemTooltipDataHolder> getItems() {
         return this.veil$tooltipDataHolder;
+    }
+
+
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, this::deployAnimController));
+    }
+
+    protected <E extends TVBlockEntity> PlayState deployAnimController(final AnimationState<E> state) {
+
+        if (this.isOn()) {
+            state.getController().setAnimation(ON);
+            return PlayState.CONTINUE;
+        } else {
+            state.getController().setAnimation(OFF);
+            return PlayState.CONTINUE;
+
+        }
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
     }
 
 }

@@ -1,0 +1,126 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 500,
+				"texture_height": 312,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "Main",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-7, 0, -6], "size": [14, 3, 13], "uv": [0, 28]},
+						{"origin": [-7.5, 3, -7], "size": [15, 13, 15], "uv": [0, 0]},
+						{"origin": [-8, 3, -7.5], "size": [16, 13, 2], "inflate": 0.2, "pivot": [0, 9.5, -6.5], "rotation": [3, 0, 0], "uv": [0, 44]}
+					]
+				},
+				{
+					"name": "Locust",
+					"parent": "Main",
+					"pivot": [0, 10, -6]
+				},
+				{
+					"name": "Torso",
+					"parent": "Locust",
+					"pivot": [-0.05, 6.5, -6.03],
+					"cubes": [
+						{
+							"origin": [-3.55, 3, -6.03],
+							"size": [7, 7, 0],
+							"uv": {
+								"north": {"uv": [78, 4], "uv_size": [92, 92]},
+								"east": {"uv": [146, 9], "uv_size": [0, 2]},
+								"south": {"uv": [172, 13], "uv_size": [8, 2]},
+								"west": {"uv": [172, 13], "uv_size": [0, 2]},
+								"up": {"uv": [164, 13], "uv_size": [8, 0]},
+								"down": {"uv": [172, 13], "uv_size": [8, 0]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Head",
+					"parent": "Locust",
+					"pivot": [-0.25, 10.25, -6.06],
+					"cubes": [
+						{
+							"origin": [-1.75, 8.75, -6.06],
+							"size": [3, 3, 0],
+							"uv": {
+								"north": {"uv": [197, 21], "uv_size": [54, 54]},
+								"east": {"uv": [174, 15], "uv_size": [0, 5]},
+								"south": {"uv": [179, 15], "uv_size": [5, 5]},
+								"west": {"uv": [179, 15], "uv_size": [0, 5]},
+								"up": {"uv": [174, 15], "uv_size": [5, 0]},
+								"down": {"uv": [179, 15], "uv_size": [5, 0]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Jaw",
+					"parent": "Head",
+					"pivot": [-0.25, 8.65, -6.05],
+					"cubes": [
+						{
+							"origin": [-1.25, 7.65, -6.05],
+							"size": [2, 2, 0],
+							"uv": {
+								"north": {"uv": [253, 32], "uv_size": [53, 53]},
+								"east": {"uv": [300, 55], "uv_size": [0, 3]},
+								"south": {"uv": [303, 55], "uv_size": [3, 3]},
+								"west": {"uv": [303, 55], "uv_size": [0, 3]},
+								"up": {"uv": [300, 55], "uv_size": [3, 0]},
+								"down": {"uv": [303, 55], "uv_size": [3, 0]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Hair",
+					"parent": "Head",
+					"pivot": [-0.3, 10.3, -6.02],
+					"cubes": [
+						{
+							"origin": [-3.3, 7.3, -6.02],
+							"size": [6, 6, 0],
+							"uv": {
+								"north": {"uv": [60, 190], "uv_size": [116, 116]},
+								"east": {"uv": [28, 133], "uv_size": [0, 5]},
+								"south": {"uv": [33, 133], "uv_size": [5, 5]},
+								"west": {"uv": [33, 133], "uv_size": [0, 5]},
+								"up": {"uv": [28, 133], "uv_size": [5, 0]},
+								"down": {"uv": [33, 133], "uv_size": [5, 0]}
+							}
+						}
+					]
+				},
+				{
+					"name": "Background",
+					"parent": "Locust",
+					"pivot": [0, 9.5, -6.01],
+					"cubes": [
+						{
+							"origin": [-5.5, 4, -6.01],
+							"size": [11, 11, 0],
+							"uv": {
+								"north": {"uv": [340, 4], "uv_size": [89, 89]},
+								"east": {"uv": [286, 19], "uv_size": [0, 11]},
+								"south": {"uv": [297, 19], "uv_size": [11, 11]},
+								"west": {"uv": [297, 19], "uv_size": [0, 11]},
+								"up": {"uv": [286, 19], "uv_size": [11, 0]},
+								"down": {"uv": [297, 19], "uv_size": [11, 0]}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

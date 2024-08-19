@@ -75,6 +75,12 @@ public class Nowhere {
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(ItemInitiation.CASSETTE);
         }
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ItemInitiation.STRANGE_WALL);
+        }
+        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+            event.accept(ItemInitiation.TV);
+        }
     }
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
