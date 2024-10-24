@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "Nowhere.refmap.json",
   "mixins": [
+    "server.PlayerMixin"
   ],
   "client": [
   ],

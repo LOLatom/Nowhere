@@ -1,0 +1,19 @@
+{
+  "parent": "nowhere:item/handheld",
+  "loader": "forge:separate_transforms",
+  "textures": {
+    "layer0": "nowhere:item/cassette_inv"
+  },
+  "base": {
+    "parent": "nowhere:item/cassette_inhand"
+  },
+  "gui_light": "front",
+  "perspectives": {
+    "gui": {
+      "parent": "nowhere:item/cassette_inv"
+    },
+    "fixed": {
+      "parent": "nowhere:item/cassette_inv"
+    }
+  }
+}

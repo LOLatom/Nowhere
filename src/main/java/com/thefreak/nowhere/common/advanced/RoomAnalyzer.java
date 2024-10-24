@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.GrassBlock;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,10 +18,24 @@ public class RoomAnalyzer {
 
     public static final int ITTERATION_CAP = 7;
 
+    public static Room scanFromPos(BlockPos pos, Level level, int itteration) {
+        return scanFromPos(pos,level,itteration,new ArrayList<>(),false);
+    }
     public static Room scanFromPos(BlockPos pos, Level level, int itteration, List<BlockPos> blockedList) {
-        System.out.println("STARTING");
+        return scanFromPos(pos,level,itteration,blockedList,false);
+    }
+    public static Room scanFromPos(BlockPos pos, Level level, int itteration, boolean withDebug) {
+        return scanFromPos(pos,level,itteration,new ArrayList<>(),withDebug);
+    }
+
+    public static Room scanFromPos(BlockPos pos, Level level, int itteration, List<BlockPos> blockedList, boolean withDebug) {
+        if (withDebug) {
+            System.out.println("STARTING");
+        }
         if (blockedList.contains(pos)) {
-            System.out.println("BLOCKED");
+            if (withDebug) {
+                System.out.println("BLOCKED");
+            }
             return null;
         }
 
@@ -29,7 +44,9 @@ public class RoomAnalyzer {
             level.getBlockState(pos.north()).isAir() &&
             level.getBlockState(pos.east()).isAir() &&
             level.getBlockState(pos.south()).isAir()) {
-            System.out.println("AIR EVERYWHERE");
+            if (withDebug) {
+                System.out.println("AIR EVERYWHERE");
+            }
             return null;
         }
         HashMap<Integer, BlockPos> positions = new HashMap<>();
@@ -45,8 +62,8 @@ public class RoomAnalyzer {
                             blockedList.add(pos);
                         }
 
-                        Room room = scanFromPos(positions.get(i).south().south(), level, itteration + 1, blockedList);
-                        System.out.println(positions.get(i).south().south());
+                        Room room = scanFromPos(positions.get(i).south().south(), level, itteration + 1, blockedList,withDebug);
+                        //System.out.println(positions.get(i).south().south());
                         if (room != null) {
 
                             DoorWay newDoorWay = new DoorWay(positions.get(i), Direction.SOUTH);
@@ -71,8 +88,8 @@ public class RoomAnalyzer {
                             blockedList.add(pos);
                         }
 
-                        Room room = scanFromPos(positions.get(i).north().north(), level, itteration + 1, blockedList);
-                        System.out.println(positions.get(i).north().north());
+                        Room room = scanFromPos(positions.get(i).north().north(), level, itteration + 1, blockedList,withDebug);
+                        //System.out.println(positions.get(i).north().north());
                         if (room != null) {
                             DoorWay newDoorWay = new DoorWay(positions.get(i), Direction.NORTH);
                             if (isHallway(room.getWidth(), room.getLength())) {
@@ -95,8 +112,8 @@ public class RoomAnalyzer {
                         if (itteration != 0) {
                             blockedList.add(pos);
                         }
-                        Room room = scanFromPos(positions.get(i).west().west(), level, itteration + 1, blockedList);
-                        System.out.println(positions.get(i).west().west());
+                        Room room = scanFromPos(positions.get(i).west().west(), level, itteration + 1, blockedList,withDebug);
+                        //System.out.println(positions.get(i).west().west());
                         if (room != null) {
                             DoorWay newDoorWay = new DoorWay(positions.get(i), Direction.WEST);
                             if (isHallway(room.getWidth(), room.getLength())) {
@@ -119,8 +136,8 @@ public class RoomAnalyzer {
                         if (itteration != 0) {
                             blockedList.add(pos);
                         }
-                        Room room = scanFromPos(positions.get(i).east().east(), level, itteration + 1, blockedList);
-                        System.out.println(positions.get(i).east().east());
+                        Room room = scanFromPos(positions.get(i).east().east(), level, itteration + 1, blockedList,withDebug);
+                        //System.out.println(positions.get(i).east().east());
                         if (room != null) {
                             DoorWay newDoorWay = new DoorWay(positions.get(i), Direction.EAST);
                             if (isHallway(room.getWidth(), room.getLength())) {
@@ -177,14 +194,16 @@ public class RoomAnalyzer {
 
         width++;
         length++;
-        System.out.println("Width : " + width + " Length : " + length);
-        System.out.println("Perimeter : " + positions.size());
-        System.out.println("Center Position : " + middlePosition);
-        for (DoorWay doorWay: entrance.values()) {
-            System.out.println("Entrance : " + doorWay.getPosition() + " Direction : " + doorWay.getDirection());
-        }
-        for (DoorWay doorWay: exits.values()) {
-            System.out.println("Exits : " + doorWay.getPosition() + " Direction : " + doorWay.getDirection());
+        if (withDebug) {
+            System.out.println("Width : " + width + " Length : " + length);
+            System.out.println("Perimeter : " + positions.size());
+            System.out.println("Center Position : " + middlePosition);
+            for (DoorWay doorWay : entrance.values()) {
+                System.out.println("Entrance : " + doorWay.getPosition() + " Direction : " + doorWay.getDirection());
+            }
+            for (DoorWay doorWay : exits.values()) {
+                System.out.println("Exits : " + doorWay.getPosition() + " Direction : " + doorWay.getDirection());
+            }
         }
         //System.out.println(blockedList);
 
@@ -202,16 +221,25 @@ public class RoomAnalyzer {
         }
     }
 
-    public static Room scanFromAnyPos(BlockPos pos, Level level, int itteration, List<BlockPos> blockedPositions) {
+    public static Room scanFromAnyPos(BlockPos pos, Level level, int itteration, List<BlockPos> blockedPositions, boolean withDebug) {
 
         for (int i = 0; i <= 60; i++) {
             BlockPos pos1 = pos.west(i);
             if (!isAirOrMore(level,pos1)) {
-                return scanFromPos(pos1.east(),level, itteration, blockedPositions);
+                return scanFromPos(pos1.east(),level, itteration, blockedPositions,withDebug);
             }
         }
         return null;
 
+    }
+    public static Room scanFromAnyPos(BlockPos pos, Level level, int itteration) {
+        return scanFromAnyPos(pos,level,itteration,new ArrayList<>(),false);
+    }
+    public static Room scanFromAnyPos(BlockPos pos, Level level, int itteration, List<BlockPos> blockedPositions) {
+        return scanFromAnyPos(pos,level,itteration,blockedPositions,false);
+    }
+    public static Room scanFromAnyPos(BlockPos pos, Level level, int itteration, boolean withDebug) {
+        return scanFromAnyPos(pos,level,itteration,new ArrayList<>(),withDebug);
     }
 
     public static boolean isAirOrMore(Level level, BlockPos pos) {

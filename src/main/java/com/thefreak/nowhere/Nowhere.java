@@ -2,10 +2,9 @@ package com.thefreak.nowhere;
 
 import com.mojang.logging.LogUtils;
 import com.thefreak.nowhere.common.entities.TheLocust;
-import com.thefreak.nowhere.common.initiation.BlockEntityInitiation;
-import com.thefreak.nowhere.common.initiation.BlockInitiation;
-import com.thefreak.nowhere.common.initiation.EntityInitiation;
-import com.thefreak.nowhere.common.initiation.ItemInitiation;
+import com.thefreak.nowhere.common.initiation.*;
+import com.thefreak.nowhere.common.items.cassettestuff.CassetteRegistry;
+import com.thefreak.nowhere.util.networking.NowhereNetwork;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
@@ -37,6 +36,7 @@ public class Nowhere {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::registerEntityAttributes);
+        CassetteRegistry.initCassettes();
         MinecraftForge.EVENT_BUS.register(this);
 
         ItemInitiation.ITEMS.register(modEventBus);
@@ -44,9 +44,11 @@ public class Nowhere {
         BlockEntityInitiation.BLOCK_ENTITY.register(modEventBus);
         EntityInitiation.ENTITIES.register(modEventBus);
 
+        NowhereNetwork.init();
+
+        SoundsInitiation.register(modEventBus);
         modEventBus.addListener(this::addCreative);
         MinecraftForge.EVENT_BUS.register(this);
-
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
     public static ResourceLocation path(String path) {
@@ -74,6 +76,7 @@ public class Nowhere {
     {
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(ItemInitiation.CASSETTE);
+            event.accept(ItemInitiation.TOE_CASSETTE);
         }
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(ItemInitiation.STRANGE_WALL);

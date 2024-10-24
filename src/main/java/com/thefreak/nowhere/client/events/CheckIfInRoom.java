@@ -15,7 +15,7 @@ public class CheckIfInRoom {
 
     @SubscribeEvent
     public static void onSneak(PlayerEvent.ItemPickupEvent event) {
-       boolean isRoomExisting = RoomAnalyzer.scanFromAnyPos(Minecraft.getInstance().player.blockPosition(), Minecraft.getInstance().level,0, new ArrayList<>()) != null;
+       boolean isRoomExisting = RoomAnalyzer.scanFromAnyPos(Minecraft.getInstance().player.blockPosition(), Minecraft.getInstance().level,0, new ArrayList<>(), true) != null;
        if (isRoomExisting) {
             System.out.println("ROOM EXIST");
        }

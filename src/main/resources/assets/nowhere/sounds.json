@@ -1,0 +1,32 @@
+{
+  "locust_hello": {
+    "subtitle": "sounds.nowhere.locust_hello",
+    "sounds": [
+      "nowhere:locust_hello"
+    ]
+  },
+  "locust_help": {
+    "subtitle": "sounds.nowhere.locust_help",
+    "sounds": [
+      "nowhere:locust_help"
+    ]
+  },
+  "locust_pain": {
+    "subtitle": "sounds.nowhere.locust_pain",
+    "sounds": [
+      "nowhere:locust_pain"
+    ]
+  },
+  "locust_growl": {
+    "subtitle": "sounds.nowhere.locust_growl",
+    "sounds": [
+      "nowhere:locust_growl"
+    ]
+  },
+  "locust_getout": {
+    "subtitle": "sounds.nowhere.locust_getout",
+    "sounds": [
+      "nowhere:locust_getout"
+    ]
+  }
+}

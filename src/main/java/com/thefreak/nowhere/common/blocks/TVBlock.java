@@ -2,6 +2,8 @@ package com.thefreak.nowhere.common.blocks;
 
 import com.thefreak.nowhere.common.blockentity.TVBlockEntity;
 import com.thefreak.nowhere.common.initiation.BlockEntityInitiation;
+import com.thefreak.nowhere.common.initiation.BlockInitiation;
+import com.thefreak.nowhere.common.items.CassetteItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -16,6 +18,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
@@ -42,8 +46,19 @@ public class TVBlock extends BaseEntityBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         TVBlockEntity tv = (TVBlockEntity) pLevel.getBlockEntity(pPos);
         if (pPlayer.getItemInHand(pHand).isEmpty()) {
-            tv.setOn(!tv.isOn());
-            return InteractionResult.SUCCESS;
+            if (tv.getCassetteID() != 0 && !(tv.getCassetteID() == 1 && tv.isOn())) {
+                tv.setOn(!tv.isOn());
+                return InteractionResult.SUCCESS;
+            }
+        }
+        if (tv.getCassetteID() == 0) {
+            if (pPlayer.getItemInHand(pHand).getItem() instanceof CassetteItem cassetteItem) {
+                if (cassetteItem.getTapeID() != 0) {
+                    pPlayer.getItemInHand(pHand).shrink(1);
+                    tv.setCassetteID(cassetteItem.getTapeID());
+                    return InteractionResult.SUCCESS;
+                }
+            }
         }
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }
@@ -60,10 +75,16 @@ public class TVBlock extends BaseEntityBlock {
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
     }
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        return createTickerHelper(pBlockEntityType, BlockEntityInitiation.TV_BE.get(), TVBlockEntity::tick);
+    }
 
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return BlockEntityInitiation.TV_BE.get().create(pPos,pState);
     }
+
+
 }

@@ -15,6 +15,6 @@ public class EntityInitiation {
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Nowhere.MODID);
 
     public static final RegistryObject<EntityType<TheLocust>> THE_LOCUST = ENTITIES.register("the_locust", () ->
-            EntityType.Builder.<TheLocust>of(TheLocust::new, MobCategory.MONSTER).sized(1.2F,5F).build(
+            EntityType.Builder.<TheLocust>of(TheLocust::new, MobCategory.MONSTER).sized(1.2F,3F).build(
                     new ResourceLocation(Nowhere.MODID, "the_locust").toString()));
 }
